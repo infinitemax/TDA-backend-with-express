@@ -7,9 +7,8 @@ const mongoose = require("mongoose");
 // const { Book } = require("./model/Book")
 // const { books } = require("./db/books")
 
-const password = process.env.PASSWORD
 
-mongoose.connect(`mongodb+srv://mbrookmanbyrne:${password}@tdabooksdatabase.gepaymy.mongodb.net/?retryWrites=true&w=majority`)
+mongoose.connect(process.env.MONGODBURI)
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

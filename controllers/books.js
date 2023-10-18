@@ -4,7 +4,6 @@ const { Book } = require("../model/Book")
 const mongoose = require("mongoose");
 require('dotenv').config()
 
-const password = process.env.PASSWORD
 
 
 // return all books
