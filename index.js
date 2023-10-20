@@ -44,7 +44,13 @@ app.use(express.json({ extended: false })); // we do this because the browser ca
 app.use("/books", booksRoutes); // this is the magic line of code that lets us use the "routes" file which makes life easier. 
 
 app.get("/", (req, res) => {
-    res.send(`this is the empty main page - try localhost:${port}/books instead`)
+    res.send(`<h2>this is the empty main page - try these addresses instead:</h2>
+    
+    <p>/books - all books</p>
+    <p>/author/[author name] - all books by a given author</p>
+    <p>/[id] - a specifc book based on its database id</p>
+    <p>/remove/[id] - remove a book based on its database id</p>
+    <p>/update/[id] - update a book based on its database id</p>`)
 })
 
 app.get("/health", (req, res) => {
