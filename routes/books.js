@@ -9,7 +9,6 @@ router.get("/", getBooks) // get all books
 router.get("/:id", getBookById) // return books by id
 router.get("/author/:author", allBooksByAuthor) // return all books by a specified author
 router.post("/add", addBook) // add books to the list
-// remove books from the lists
 router.delete("/remove/:id", removeBookById) // delete by id
 router.patch("/update/:id", updateBook)  // edit book listings
 

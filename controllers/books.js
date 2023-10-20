@@ -21,11 +21,17 @@ exports.getBooks = async (req, res, next) => {
 
 // return books by id
 exports.getBookById = async (req, res, next) => {
+    const { id } = req.params;
 
     try {
-        const { id } = req.params;
+        // validate id
+        if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+            console.log('that is not a valid id')
+            res.send(`${id} is not a valid id`)
+            return next(createError(404, "That is not a valid ID"))
+        }
         const bookById = await Book.findOne({ _id: `${id}`})
-        if (!bookById) {
+        if (bookById.length === 0) {
             res.send("There is no entry with that ID")
             return next(createError(404, "ID does not exist"))
         }
