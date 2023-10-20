@@ -123,11 +123,17 @@ exports.removeBookById = async (req, res, next) => {
     const id = req.params.id
     
     try { 
+        // validate id
+        if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+            console.log('that is not a valid id')
+            res.send(`${id} is not a valid id`)
+            return next(createError(404, "That is not a valid ID"))
+        }
         // we're using the findByIdAndDelete mongoose method and sending back some useful info.
         const bookToDelete = await Book.findByIdAndDelete(id)
         if (!bookToDelete) {
             res.send("There's no book with that id")
-            next(createError(404, "no book with that id"))
+            return next(createError(404, "no book with that id"))
         }
 
         console.log(`we have just deleted ${bookToDelete.title} by ${bookToDelete.author}`)
