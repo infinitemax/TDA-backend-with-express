@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 // const { books } = require("./db/books")
 
 
-mongoose.connect(process.env.MONGODBURI)
+mongoose.connect(process.env.MONGODBURI, { useNewUrlParser: true})
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

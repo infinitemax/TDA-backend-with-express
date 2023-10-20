@@ -14,6 +14,7 @@ exports.getBooks = async (req, res, next) => {
         res.send(allBooks)
     } catch {
         console.log(error)
+
         res.send("There seems to have been an error!")
         return next(createError(500, "There seems to have been an error!"))
     }
@@ -23,9 +24,10 @@ exports.getBooks = async (req, res, next) => {
 exports.getBookById = async (req, res, next) => {
     const { id } = req.params;
 
+    // this is the previous method that uses my own validation - going to try a new way using the error object
     try {
-        // validate id
-        if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+        // validate id --> instead of using regex, cast it to an object ID... - can access the error object to get the status code and error etc rather than writing specific validations.
+        if (!id.match(/^[0-9a-fA-F]{24}$/)) { 
             console.log('that is not a valid id')
             res.send(`${id} is not a valid id`)
             return next(createError(404, "That is not a valid ID"))
