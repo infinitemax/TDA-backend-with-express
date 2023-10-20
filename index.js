@@ -47,10 +47,10 @@ app.get("/", (req, res) => {
     res.send(`<h2>this is the empty main page - try these addresses instead:</h2>
     
     <p>/books - all books</p>
-    <p>/author/[author name] - all books by a given author</p>
-    <p>/[id] - a specifc book based on its database id</p>
-    <p>/remove/[id] - remove a book based on its database id</p>
-    <p>/update/[id] - update a book based on its database id</p>`)
+    <p>/books/author/[author name] - all books by a given author</p>
+    <p>/books/[id] - a specifc book based on its database id</p>
+    <p>/books/remove/[id] - remove a book based on its database id</p>
+    <p>/books/update/[id] - update a book based on its database id</p>`)
 })
 
 app.get("/health", (req, res) => {
